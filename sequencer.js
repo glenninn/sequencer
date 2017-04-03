@@ -305,6 +305,8 @@ function analyzeSet(){
 			console.log(";There are initially < " + gSeedPairs.length + " > seed pairs of DNA sequences\n");
 		}
 		
+		// Walk through each articulated seed DNA pair, until you succeed in splicing all, or
+		// fail due to no solve-able chain.
 		for(var p=0; p<gSeedPairs.length; p++){
 			// Now define the search...
 			var testCase = {
@@ -316,6 +318,7 @@ function analyzeSet(){
 			for(var i=0; i< gDnaSegments.length; i++){
 				testCase.availability.push(true);
 			}
+			// "consume" the 2 seed DNA segments
 			testCase.availability[gSeedPairs[p].a] = false;
 			testCase.availability[gSeedPairs[p].b] = false;
 			
@@ -323,6 +326,8 @@ function analyzeSet(){
 				process.stdout.write(";Building Total DNA from Seed Pair(" + p + "): " + gDnaSegments[gSeedPairs[p].a].name
 						+ fSep + gDnaSegments[gSeedPairs[p].b].name );
 			}
+			
+			// Exhaustively try to chain the remaining segments onto this seed pair
 			fullChain  = findChain(testCase);
 			if(fullChain != null){
 				if(fverbose){
