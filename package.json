@@ -1,0 +1,15 @@
+{
+  "name": "sequencer",
+  "version": "1.0.0",
+  "description": "Program to injest FASTA compliant DNA segments and to perform reconstruction",
+  "main": "sequencer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository" : {
+    "type" : "git",
+	"url"  : "git+https://github.com/glenninn/sequencer.git"
+  },
+  "author": "glenninn@yahoo.com",
+  "license": "ISC"
+}
