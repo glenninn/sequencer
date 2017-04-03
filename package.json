@@ -4,7 +4,8 @@
   "description": "Program to injest FASTA compliant DNA segments and to perform reconstruction",
   "main": "sequencer.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+	"sequencer": "node sequencer.js"
   },
   "repository" : {
     "type" : "git",

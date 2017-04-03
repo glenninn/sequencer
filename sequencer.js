@@ -248,12 +248,15 @@ function findChain( testCase ){
   
   
 function listAlleles(dna){
-	
-	process.stdout.write("\nRebuilt DNA Sequence from FASTA Segments\n");
-	process.stdout.write(  "vv-------------clip here--------------vv\n");
-    process.stdout.write(dna.seq);	
+var fasta = dna.seq.match(/.{1,60}/g);
+
+	process.stdout.write("\n;Rebuilt DNA Sequence from FASTA Segments\n");
+	process.stdout.write(  ";vv-------------clip here--------------vv\n");
+	process.stdout.write(">"+source+"\n");
+	for(var i=0; i<fasta.length; i++){
+		process.stdout.write( fasta[i] + "\n");
+	}
 	process.stdout.write("\n");
-	
 }
   
   
@@ -261,12 +264,13 @@ function listSeqNames(dna){
 	 var fasta = dna.name.split(fSep);
 	 var spp= 5;
 
-	process.stdout.write("\nOrdered listing of FASTA segments\n");
-	process.stdout.write(  "---------------------------------\n");
+	process.stdout.write("\n;Ordered listing of FASTA segments\n");
+	process.stdout.write(  ";---------------------------------\n");
+	process.stdout.write(";");
 	
 	for(var i=0; i<fasta.length; i++){
 		if( (i>0) && (i%spp==0)){
-			process.stdout.write("\n");
+			process.stdout.write("\n;");
 		}
 		process.stdout.write(fSep + fasta[i]);
 	}
@@ -274,12 +278,12 @@ function listSeqNames(dna){
 }
 
 
-console.log("\n****************************************************");
-console.log(  "* FASTA Resequencer Application");
-console.log(  "* 2017, g. Inn");
-console.log( "*");
-console.log(  "****************************************************");
-console.log("Processing file: " + source);
+console.log(";****************************************************");
+console.log(";* FASTA Resequencer Application");
+console.log(";* 2017, G. Inn, comments to: glenninn@yahoo.com");
+console.log(";*");
+console.log(";****************************************************");
+console.log(";Processing file: " + source);
 
 function analyzeSet(){
 	readFasta(source).then( function(segments){
@@ -292,13 +296,13 @@ function analyzeSet(){
 		
 		// Save data from file into global DNA segment array
 		gDnaSegments = segments;
-		console.log("Read [ " + gDnaSegments.length + " ] DNA sequences from: " + source);
+		console.log(";Read [ " + gDnaSegments.length + " ] DNA sequences from: " + source);
 
 
 		// Create set of "starting" DNA pairs
 		createSeedPairs();
 		if(fverbose){
-			console.log("There are initially < " + gSeedPairs.length + " > seed pairs of DNA sequences\n");
+			console.log(";There are initially < " + gSeedPairs.length + " > seed pairs of DNA sequences\n");
 		}
 		
 		for(var p=0; p<gSeedPairs.length; p++){
@@ -316,7 +320,7 @@ function analyzeSet(){
 			testCase.availability[gSeedPairs[p].b] = false;
 			
 			if(fverbose){
-				process.stdout.write("Building Total DNA from Seed Pair(" + p + "): " + gDnaSegments[gSeedPairs[p].a].name
+				process.stdout.write(";Building Total DNA from Seed Pair(" + p + "): " + gDnaSegments[gSeedPairs[p].a].name
 						+ fSep + gDnaSegments[gSeedPairs[p].b].name );
 			}
 			fullChain  = findChain(testCase);
@@ -334,12 +338,11 @@ function analyzeSet(){
 
         if(fullChain != null){
 			if(fverbose){
-				console.log("\nSequencer was successful to reconstruct the DNA chain sequence")
 				listSeqNames(fullChain.dna);
 			}
 			listAlleles(fullChain.dna);
 		}
-		console.log("\n*** done ***");
+		console.log("\n;*** done ***");
 		
 	},function(error){
 		console.log("Error reading Fasta data: " + error);	
