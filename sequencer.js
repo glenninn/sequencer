@@ -334,7 +334,7 @@ function analyzeSet(){
 
         if(fullChain != null){
 			if(fverbose){
-				console.log("\nSequencer was successful to reconstring the DNA chain sequence")
+				console.log("\nSequencer was successful to reconstruct the DNA chain sequence")
 				listSeqNames(fullChain.dna);
 			}
 			listAlleles(fullChain.dna);
