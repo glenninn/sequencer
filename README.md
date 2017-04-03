@@ -1,20 +1,24 @@
 # Sequence Application
-This package provides a Javascript application that attempts to rebuild a DNA segment from a set of FASTA-compliant records.  The application reads the FASTA-compliant records from a specified data-file and outputs a DNA sequence based on the FASTA records.
+This package provides a Javascript application that attempts to rebuild a DNA segment from a set of   [FASTA-compliant](https://en.wikipedia.org/wiki/FASTA_format "About FASTA data...")  records.  The application reads the FASTA-compliant records from a specified data-file and outputs the chained DNA sequence in a FASTA-compliant format.
 
 Comments and questions contact [Glenn Inn](mailto:glenninn@yahoo.com "Glenn Inn").
 
 ## About this application ##
-- The program is written in Javascript and run using NodeJS.
-- The output is human readable and should be machine readable FASTA
+- The program is written in Javascript and is run using NodeJS.
+- The output is human readable and should be machine readable by FASTA-compliant applications.
 
 ## Getting Started ##
 
-- Ensure that you have installed the NodeJS environment on your computer.  You can [download NodeJS](https://nodejs.org/ "NodeJS web site") from here. (The application was build using version v4.5.0)
-- Download this github project.
+- Ensure that you have installed the NodeJS environment on your computer.  You can [download NodeJS](https://nodejs.org/ "NodeJS web site") from here. (The application was built using version v4.5.0)
+- Download [this github](https://github.com/glenninn/sequencer "Sequencer App") project.
+- Two data files are included in this project for your reference:
+  - [test.txt](https://github.com/glenninn/sequencer/blob/master/test.txt "Quick Test set")  :  A short 4 record set of FASTA data
+  - [coding-challenge-data-set.txt](https://github.com/glenninn/sequencer/blob/master/coding_challenge_data_set.txt "Longer file of FASTA records") : A long (50 element) set of FASTA records
+
 
 ### To Run the Sequencer ###
 ------------
-To run the sequencer, you invoke the following command-line using Node or its package manager *npm*:
+You invoke the sequencer application by entering the following command-line (using Node directly, or using its package manager *npm*):
 > node sequencer.js *data_file options*
 > 
 > npm run sequencer **--** *data_file options*
@@ -33,7 +37,7 @@ The program currently recognizes the following option(s):
 
 The text contained in the output should be machine-readable by FASTA-compliant applications.  By nature the output is also human-readable (it just will have a few lines that start with ';' semicolons)
 
-The header of the file shows the following information:
+The header portion of the output shows the following information:
 
     ;****************************************************
     ;* FASTA Resequencer Application
@@ -73,3 +77,6 @@ Lastly, the FASTA record showing the chained DNA
     TTCATACCTCGGATCTATCAATCCGAAGTACAGTAGTGCGCGATCGAAGAATCCCGCACC
     CCAGGTGTTCCTCCTACAGCGTTGTGACAACTATGTCTTGAGGTACTCGCCACACGCCCG
     TTCAGGTGGAAGAGCCGCAGGCGAGTCAACTGAGCGTACTGGATCTATGCTTCAATACTT
+    ...
+    ;*** done ***
+
